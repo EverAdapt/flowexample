@@ -21,7 +21,7 @@
         "username": "diego@furlli.com.au"
     },
     {
-        "note": "test for each loop (ceiling cornice sum)",
+        "note": "for each loop (ceiling cornice sum)",
         "expression": "$total = 0\nFOREACH %%Quantities\/BillRecord%% IN %%Quantities%% ,\n    IF %%Quantities\/BillRecord\/ItemCode%% == \"700.IFC.Ceiling.Cornice01\"\n    THEN $total = $total + %%Quantities\/BillRecord\/Quantity%%\n    ENDIF \nNEXT\nEXPORT(106.333, $total, 108, 1, 1, \"text for ceiling\")",
         "flow_id": 25,
         "active": 0,
