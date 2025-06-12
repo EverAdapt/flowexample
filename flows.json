@@ -50,7 +50,7 @@
     },
     {
         "note": "Sum and Export Items Flow 6",
-        "username": "diego@furlli.com.au",
+        "username": "diego",
         "expression": "\/\/ Start variables\n$total = 0\n\n\/\/ Loop through item 800.12345 quantities and sum\nFOREACH %%Quantities\/BillRecord%% IN %%Quantities%% ,\n    IF %%Quantities\/BillRecord\/ItemCode%% == \"800.12345\"\n    THEN \n        $total = $total + %%Quantities\/BillRecord\/Quantity%%\n    ENDIF \nNEXT\n\n\/\/ Calculate total cost\n$total_cost = $total * 21.5\n\n\/\/ Export item 027.12345 to cost centre 27 and load 2\nEXPORT(\"027.12345\", $total_cost, 27, 2, 1, \"Exported total cost\")",
         "flow_id": 30,
         "active": 0
