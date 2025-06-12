@@ -44,7 +44,7 @@
     {
         "note": "new test flow",
         "username": "diego@furlli.com.au",
-        "expression": "IF test THEN\n  nothing\nENDIF",
+        "expression": "IF test THEN\n  dev mode\nENDIF",
         "flow_id": 35,
         "active": 1
     },
