@@ -1,8 +1,15 @@
 [
     {
         "note": "Examples Switch Case",
+        "username": "diego@furlli.com.au",
         "expression": "\/\/set the benchtop variable to use later\n$benchtop_colour =$$Choices\/Cabinetwork\/Cabinetwork - Benchtops\/Ensuite\/item$$\n\n$total = 0\nFOREACH %%Quantities\/BillRecord%% IN %%Quantities%% ,\n    IF %%Quantities\/BillRecord\/ItemCode%% == \"700.IFC.BWK.Set.Partition.GF\"\n    THEN $total = $total + %%Quantities\/BillRecord\/Quantity%%\n    ENDIF \nNEXT\n\nSWITCH($benchtop_colour,\n  CASE \"20mm Cotton White\", EXPORT(\"106.01673\", 1, 102, 1, 1, $benchtop_colour)\n  CASE \"20mm Iceland\", EXPORT(\"106.0156\", 1, 101, 1, 1, $benchtop_colour)\n  EXPORT(\"106.123\", $total, 103, 1, 1, $benchtop_colour)\n)",
         "flow_id": 16,
+        "active": 0
+    },
+    {
+        "note": "Export 20mm Iceland DV benchtop",
+        "expression": "IF\n $$Choices\/Cabinetwork\/Cabinetwork - Style & Size\/Ensuite\/item$$\n== \"Lifestyle 1.7m\" \nAND\n$$Choices\/Cabinetwork\/Cabinetwork - Benchtops\/Ensuite\/item$$\n== \"20mm Iceland\"\n\nTHEN \n@benchtop = $$Choices\/Cabinetwork\/Cabinetwork - Benchtops\/Ensuite\/item$$\nEXPORT(106.0156, 1, 104, 1, 1, \"test\")\nENDIF \n",
+        "flow_id": 21,
         "active": 0,
         "username": "diego@furlli.com.au"
     },
@@ -10,13 +17,6 @@
         "note": "Setting variable example",
         "expression": "IF\n $$Choices\/Cabinetwork\/Cabinetwork - Style & Size\/Ensuite\/item$$\n== \"Lifestyle 1.7m\" \nTHEN \n\/\/set the benchtop variable to use later\n$benchtop_colour =$$Choices\/Cabinetwork\/Cabinetwork - Benchtops\/Ensuite\/item$$\n\nEXPORT(106.0156, 1, 105, 1, 1, $benchtop_colour)\n\nEXPORT(106.0156, 1, 106, 1, 1, $$Choices\/Cabinetwork\/Cabinetwork - Benchtops\/Ensuite\/item$$)\nEXPORT(106.0156, 1, 107, 1, 1, \"text \" & @benchtop)\nENDIF \n",
         "flow_id": 22,
-        "active": 0,
-        "username": "diego@furlli.com.au"
-    },
-    {
-        "note": "Export 20mm Iceland DV benchtop",
-        "expression": "IF\n $$Choices\/Cabinetwork\/Cabinetwork - Style & Size\/Ensuite\/item$$\n== \"Lifestyle 1.7m\" \nAND\n$$Choices\/Cabinetwork\/Cabinetwork - Benchtops\/Ensuite\/item$$\n== \"20mm Iceland\"\n\nTHEN \n@benchtop = $$Choices\/Cabinetwork\/Cabinetwork - Benchtops\/Ensuite\/item$$\nEXPORT(106.0156, 1, 104, 1, 1, \"test\")\nENDIF \n",
-        "flow_id": 21,
         "active": 0,
         "username": "diego@furlli.com.au"
     },
@@ -49,9 +49,9 @@
         "username": "diego@furlli.com.au"
     },
     {
-        "note": "Sum and Export Items Flow 6",
-        "username": "diego",
-        "expression": "\/\/ Start variables\n$total = 0\n\n\/\/ Loop through item 800.12345 quantities and sum\nFOREACH %%Quantities\/BillRecord%% IN %%Quantities%% ,\n    IF %%Quantities\/BillRecord\/ItemCode%% == \"800.12345\"\n    THEN \n        $total = $total + %%Quantities\/BillRecord\/Quantity%%\n    ENDIF \nNEXT\n\n\/\/ Calculate total cost\n$total_cost = $total * 21.5\n\n\/\/ Export item 027.12345 to cost centre 27 and load 2\nEXPORT(\"027.12345\", $total_cost, 27, 2, 1, \"Exported total cost\")",
+        "note": "Sum and Export Items test",
+        "username": "diego@furlli.com.au",
+        "expression": "\/\/ Start variables -\n$total = 0\n\n\/\/ Loop through item 800.12345 quantities and sum\nFOREACH %%Quantities\/BillRecord%% IN %%Quantities%% ,\n    IF %%Quantities\/BillRecord\/ItemCode%% == \"800.12345\"\n    THEN \n        $total = $total + %%Quantities\/BillRecord\/Quantity%%\n    ENDIF \nNEXT\n\n\/\/ Calculate total cost\n$total_cost = $total * 21.5\n\n\/\/ Export item 027.12345 to cost centre 27 and load 2\nEXPORT(\"027.12345\", $total_cost, 27, 2, 1, \"Exported total cost\")",
         "flow_id": 30,
         "active": 0
     }
