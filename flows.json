@@ -41,7 +41,7 @@
         "note": "Export 20mm Iceland DV benchtop",
         "expression": "IF\n $$Choices\/Cabinetwork\/Cabinetwork - Style & Size\/Ensuite\/item$$\n== \"Lifestyle 1.7m\" \nAND\n$$Choices\/Cabinetwork\/Cabinetwork - Benchtops\/Ensuite\/item$$\n== \"20mm Iceland\"\n\nTHEN \n@benchtop = $$Choices\/Cabinetwork\/Cabinetwork - Benchtops\/Ensuite\/item$$\nEXPORT(106.0156, 1, 104, 1, 1, \"test\")\nENDIF \n",
         "flow_id": 21,
-        "active": 0,
+        "active": 1,
         "username": ""
     },
     {
