@@ -9,10 +9,7 @@
     {
         "note": "new flow test",
         "username": "diego@everadapt.com",
-        "expression": "comment\ntest \nmultiline",
-        "attachments": [
-            "uploads\/file_684b9580da77f.pdf"
-        ],
+        "expression": "\/* comment\ntest \nmultil *\/",
         "flow_id": 36,
         "active": 1
     },
