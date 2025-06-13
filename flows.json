@@ -8,8 +8,11 @@
     },
     {
         "note": "new flow test",
-        "username": "diego@furlli.com.au",
-        "expression": "\/\/comment",
+        "username": "diego@everadapt.com",
+        "expression": "comment\ntest \nmultiline",
+        "attachments": [
+            "uploads\/file_684b9580da77f.pdf"
+        ],
         "flow_id": 36,
         "active": 1
     },
