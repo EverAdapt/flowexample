@@ -31,6 +31,13 @@
         "active": 1
     },
     {
+        "note": "Sum and Export Items test (copy)",
+        "username": "Diego Oliveira",
+        "expression": "\/\/ Start variables -\n$total = 0\n\n\/\/ Loop through item 800.12345 quantities and sum\nFOREACH %%Quantities\/BillRecord%% IN %%Quantities%% ,\n    IF %%Quantities\/BillRecord\/ItemCode%% == \"800.12345\"\n    THEN \n        $total = $total + %%Quantities\/BillRecord\/Quantity%%\n    ENDIF \nNEXT\n\n\/\/ Calculate total cost\n$total_cost = $total * 21.5\n\n\/\/ Export item 027.12345 to cost centre 27 and load 2\nEXPORT(\"027.12345\", $total_cost, 27, 2, 1, \"Exported total cost\")",
+        "flow_id": 39,
+        "active": 1
+    },
+    {
         "note": "Export 20mm Iceland DV benchtop",
         "expression": "IF\n $$Choices\/Cabinetwork\/Cabinetwork - Style & Size\/Ensuite\/item$$\n== \"Lifestyle 1.7m\" \nAND\n$$Choices\/Cabinetwork\/Cabinetwork - Benchtops\/Ensuite\/item$$\n== \"20mm Iceland\"\n\nTHEN \n@benchtop = $$Choices\/Cabinetwork\/Cabinetwork - Benchtops\/Ensuite\/item$$\nEXPORT(106.0156, 1, 104, 1, 1, \"test\")\nENDIF \n",
         "flow_id": 21,
