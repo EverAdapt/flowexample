@@ -24,39 +24,46 @@
         "active": 1
     },
     {
+        "note": "[object PointerEvent]",
+        "username": "Diego Oliveira",
+        "expression": "\/\/ test",
+        "flow_id": 38,
+        "active": 1
+    },
+    {
         "note": "Export 20mm Iceland DV benchtop",
         "expression": "IF\n $$Choices\/Cabinetwork\/Cabinetwork - Style & Size\/Ensuite\/item$$\n== \"Lifestyle 1.7m\" \nAND\n$$Choices\/Cabinetwork\/Cabinetwork - Benchtops\/Ensuite\/item$$\n== \"20mm Iceland\"\n\nTHEN \n@benchtop = $$Choices\/Cabinetwork\/Cabinetwork - Benchtops\/Ensuite\/item$$\nEXPORT(106.0156, 1, 104, 1, 1, \"test\")\nENDIF \n",
         "flow_id": 21,
         "active": 0,
-        "username": "diego@furlli.com.au"
+        "username": ""
     },
     {
         "note": "Setting variable example",
         "expression": "IF\n $$Choices\/Cabinetwork\/Cabinetwork - Style & Size\/Ensuite\/item$$\n== \"Lifestyle 1.7m\" \nTHEN \n\/\/set the benchtop variable to use later\n$benchtop_colour =$$Choices\/Cabinetwork\/Cabinetwork - Benchtops\/Ensuite\/item$$\n\nEXPORT(106.0156, 1, 105, 1, 1, $benchtop_colour)\n\nEXPORT(106.0156, 1, 106, 1, 1, $$Choices\/Cabinetwork\/Cabinetwork - Benchtops\/Ensuite\/item$$)\nEXPORT(106.0156, 1, 107, 1, 1, \"text \" & @benchtop)\nENDIF \n",
         "flow_id": 22,
         "active": 0,
-        "username": "diego@furlli.com.au"
+        "username": ""
     },
     {
         "note": "test for each loop (ceiling cornice sum)",
         "expression": "$total = 0\nFOREACH %%Quantities\/BillRecord%% IN %%Quantities%% ,\n    IF %%Quantities\/BillRecord\/ItemCode%% == \"700.IFC.Ceiling.Cornice01\"\n    THEN $total = $total + %%Quantities\/BillRecord\/Quantity%%\n    ENDIF \nNEXT\nEXPORT(106.333, $total, 108, 1, 1, \"text for ceiling\")",
         "flow_id": 25,
         "active": 0,
-        "username": "diego@furlli.com.au"
+        "username": ""
     },
     {
         "note": "test for each loop (brick internal partition)",
         "expression": "$total = 0\nFOREACH %%Quantities\/BillRecord%% IN %%Quantities%% ,\n    IF %%Quantities\/BillRecord\/ItemCode%% == \"700.IFC.BWK.Set.Partition.GF\"\n    THEN $total = $total + %%Quantities\/BillRecord\/Quantity%%\n    ENDIF \nNEXT\nEXPORT(\"106.333\", $total, 108, 1, 1, \"text for quantities\")",
         "flow_id": 26,
         "active": 0,
-        "username": "diego@furlli.com.au"
+        "username": ""
     },
     {
         "note": "WORKING - Loop trough quantities and join texts (door frames)",
         "expression": "\/\/start variables\n$total = 0\n$workup = \"\"\n\n\n\/\/loop trough all single doorframes AND sum quantity, join description(workup)\nFOREACH %%Quantities\/BillRecord%% IN %%Quantities%% ,\n    IF %%Quantities\/BillRecord\/ItemCode%% == \"800.Da001\" \n    THEN \n        $total = $total + %%Quantities\/BillRecord\/Quantity%%\n        $workup = $workup & char(10) & %%Quantities\/BillRecord\/XDescription%%\n    ENDIF \nNEXT\n\n\/\/now check selections for frame type\n$frame_type = $$Choices\/Joinery\/Joinery - Internal\/House\/item$$\nSWITCH($frame_type,\n  CASE \"Deluxe Metal Door Frame\", EXPORT(\"054.200D\", $total, 54, 1, 1, $workup)\n  CASE \"Regal Metal Door Frame\", EXPORT(\"054.200R\", $total, 54, 1, 1, $workup)\n)\n\n\/\/also export labour fees\nEXPORT(\"105.23\", $total, 105, 1, 1, \"fixie\")\nEXPORT(\"151.255\", $total, 151, 1, 1, \"painter\")",
         "flow_id": 27,
         "active": 0,
-        "username": "diego@furlli.com.au"
+        "username": ""
     },
     {
         "note": "new test flow",
