@@ -24,9 +24,12 @@
         "active": 1
     },
     {
-        "note": "[object PointerEvent]",
+        "note": "proper title",
         "username": "Diego Oliveira",
-        "expression": "\/\/ test",
+        "expression": "\/\/ test\nIF something THEN that ENDIF ",
+        "attachments": [
+            "uploads\/file_684bd1d6a1efe.pdf"
+        ],
         "flow_id": 38,
         "active": 1
     },
