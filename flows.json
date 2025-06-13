@@ -62,7 +62,7 @@
         "note": "test for each loop (brick internal partition)",
         "expression": "$total = 0\nFOREACH %%Quantities\/BillRecord%% IN %%Quantities%% ,\n    IF %%Quantities\/BillRecord\/ItemCode%% == \"700.IFC.BWK.Set.Partition.GF\"\n    THEN $total = $total + %%Quantities\/BillRecord\/Quantity%%\n    ENDIF \nNEXT\nEXPORT(\"106.333\", $total, 108, 1, 1, \"text for quantities\")",
         "flow_id": 26,
-        "active": 0,
+        "active": 1,
         "username": ""
     },
     {
