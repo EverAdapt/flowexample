@@ -14,40 +14,6 @@
         "active": 1
     },
     {
-        "note": "Loop trough quantities and join texts dynamic ItemCode (door frames) (copy)",
-        "username": "diego@everadapt.com",
-        "expression": "\/\/start variables\n$total = 0\n$workup = \"\"\n\n\/\/loop trough all single doorframes AND sum quantity, join description(workup)\nFOREACH %%Quantities\/BillRecord%% IN %%Quantities%% ,\n  IF %%Quantities\/BillRecord\/ItemCode%% == \"800.Da001\" \n    THEN \n    $wc = \"\"\n    $hand = \"\"\n    $total = $total + %%Quantities\/BillRecord\/Quantity%%\n    $workup = %%Quantities\/BillRecord\/XDescription%%\n      \/\/chack IF WA framing\n      IF contains($workup, \"WC\") THEN $wc = \".WC\" ENDIF \n      \/\/define handing\n      IF contains($workup, \"RH\") THEN $hand = \".RH\" ENDIF \n      IF contains($workup, \"LH\") THEN $hand = \".LH\" ENDIF \n    EXPORT(\"054.200\" & $hand & $wc, 1, 105, 1, 1, \"note these example items dont exist\")\n  ENDIF \nNEXT\n\n\/\/also export labour fees\nEXPORT(\"105.23\", $total, 105, 1, 1, \"fixie\")\nEXPORT(\"151.255\", $total, 151, 1, 1, \"painter\")",
-        "attachments": [
-            "uploads\/file_684b9e251842b.pdf"
-        ],
-        "flow_id": 37,
-        "active": 1
-    },
-    {
-        "note": "proper title",
-        "username": "Diego Oliveira",
-        "expression": "\/\/ test\nIF something THEN that ENDIF ",
-        "attachments": [
-            "uploads\/file_684bd1d6a1efe.pdf"
-        ],
-        "flow_id": 38,
-        "active": 1
-    },
-    {
-        "note": "Sum and Export Items test (copy)",
-        "username": "Diego Oliveira",
-        "expression": "\/\/ Start variables -\n$total = 0\n\n\/\/ Loop through item 800.12345 quantities and sum\nFOREACH %%Quantities\/BillRecord%% IN %%Quantities%% ,\n    IF %%Quantities\/BillRecord\/ItemCode%% == \"800.12345\"\n    THEN \n        $total = $total + %%Quantities\/BillRecord\/Quantity%%\n    ENDIF \nNEXT\n\n\/\/ Calculate total cost\n$total_cost = $total * 21.5\n\n\/\/ Export item 027.12345 to cost centre 27 and load 2\nEXPORT(\"027.12345\", $total_cost, 27, 2, 1, \"Exported total cost\")",
-        "flow_id": 39,
-        "active": 1
-    },
-    {
-        "note": "Sum and Multiply Flow",
-        "username": "Diego Oliveira",
-        "expression": "\/\/ Start variables -\n$total = 0\n\n\/\/ Loop through item 1234.4321 quantities and sum\nFOREACH %%Quantities\/BillRecord%% IN %%Quantities%% ,\n    IF %%Quantities\/BillRecord\/ItemCode%% == \"1234.4321\"\n    THEN \n        $total = $total + %%Quantities\/BillRecord\/Quantity%%\n    ENDIF \nNEXT\n\n\/\/ Calculate total cost\n$total_cost = $total * 25\n\n\/\/ Export item 54.12345 to cost centre 54 and load 1\nEXPORT(\"54.12345\", $total_cost, 54, 1, 1, \"Exported total cost\")",
-        "flow_id": 40,
-        "active": 1
-    },
-    {
         "note": "Export 20mm Iceland DV benchtop",
         "expression": "IF\n $$Choices\/Cabinetwork\/Cabinetwork - Style & Size\/Ensuite\/item$$\n== \"Lifestyle 1.7m\" \nAND\n$$Choices\/Cabinetwork\/Cabinetwork - Benchtops\/Ensuite\/item$$\n== \"20mm Iceland\"\n\nTHEN \n@benchtop = $$Choices\/Cabinetwork\/Cabinetwork - Benchtops\/Ensuite\/item$$\nEXPORT(106.0156, 1, 104, 1, 1, \"test\")\nENDIF \n",
         "flow_id": 21,
@@ -95,5 +61,39 @@
         "expression": "\/\/ Start variables -\n$total = 0\n\n\/\/ Loop through item 800.12345 quantities and sum\nFOREACH %%Quantities\/BillRecord%% IN %%Quantities%% ,\n    IF %%Quantities\/BillRecord\/ItemCode%% == \"800.12345\"\n    THEN \n        $total = $total + %%Quantities\/BillRecord\/Quantity%%\n    ENDIF \nNEXT\n\n\/\/ Calculate total cost\n$total_cost = $total * 21.5\n\n\/\/ Export item 027.12345 to cost centre 27 and load 2\nEXPORT(\"027.12345\", $total_cost, 27, 2, 1, \"Exported total cost\")",
         "flow_id": 30,
         "active": 0
+    },
+    {
+        "note": "Loop trough quantities and join texts dynamic ItemCode (door frames) (copy)",
+        "username": "diego@everadapt.com",
+        "expression": "\/\/start variables\n$total = 0\n$workup = \"\"\n\n\/\/loop trough all single doorframes AND sum quantity, join description(workup)\nFOREACH %%Quantities\/BillRecord%% IN %%Quantities%% ,\n  IF %%Quantities\/BillRecord\/ItemCode%% == \"800.Da001\" \n    THEN \n    $wc = \"\"\n    $hand = \"\"\n    $total = $total + %%Quantities\/BillRecord\/Quantity%%\n    $workup = %%Quantities\/BillRecord\/XDescription%%\n      \/\/chack IF WA framing\n      IF contains($workup, \"WC\") THEN $wc = \".WC\" ENDIF \n      \/\/define handing\n      IF contains($workup, \"RH\") THEN $hand = \".RH\" ENDIF \n      IF contains($workup, \"LH\") THEN $hand = \".LH\" ENDIF \n    EXPORT(\"054.200\" & $hand & $wc, 1, 105, 1, 1, \"note these example items dont exist\")\n  ENDIF \nNEXT\n\n\/\/also export labour fees\nEXPORT(\"105.23\", $total, 105, 1, 1, \"fixie\")\nEXPORT(\"151.255\", $total, 151, 1, 1, \"painter\")",
+        "attachments": [
+            "uploads\/file_684b9e251842b.pdf"
+        ],
+        "flow_id": 37,
+        "active": 1
+    },
+    {
+        "note": "proper title",
+        "username": "Diego Oliveira",
+        "expression": "\/\/ test\nIF something THEN that ENDIF ",
+        "attachments": [
+            "uploads\/file_684bd1d6a1efe.pdf"
+        ],
+        "flow_id": 38,
+        "active": 1
+    },
+    {
+        "note": "Sum and Multiply Flow",
+        "username": "Diego Oliveira",
+        "expression": "\/\/ Start variables -\n$total = 0\n\n\/\/ Loop through item 1234.4321 quantities and sum\nFOREACH %%Quantities\/BillRecord%% IN %%Quantities%% ,\n    IF %%Quantities\/BillRecord\/ItemCode%% == \"1234.4321\"\n    THEN \n        $total = $total + %%Quantities\/BillRecord\/Quantity%%\n    ENDIF \nNEXT\n\n\/\/ Calculate total cost\n$total_cost = $total * 25\n\n\/\/ Export item 54.12345 to cost centre 54 and load 1\nEXPORT(\"54.12345\", $total_cost, 54, 1, 1, \"Exported total cost\")",
+        "flow_id": 40,
+        "active": 1
+    },
+    {
+        "note": "Sum and Export Items test (copy)",
+        "username": "Diego Oliveira",
+        "expression": "\/\/ Start variables -\n$total = 0\n\n\/\/ Loop through item 800.12345 quantities and sum\nFOREACH %%Quantities\/BillRecord%% IN %%Quantities%% ,\n    IF %%Quantities\/BillRecord\/ItemCode%% == \"800.12345\"\n    THEN \n        $total = $total + %%Quantities\/BillRecord\/Quantity%%\n    ENDIF \nNEXT\n\n\/\/ Calculate total cost\n$total_cost = $total * 21.5\n\n\/\/ Export item 027.12345 to cost centre 27 and load 2\nEXPORT(\"027.12345\", $total_cost, 27, 2, 1, \"Exported total cost\")",
+        "flow_id": 39,
+        "active": 1
     }
 ]
