@@ -4,7 +4,7 @@
         "username": "diego@furlli.com.au",
         "expression": "\/\/set the benchtop variable to use later\n$benchtop_colour =$$Choices\/Cabinetwork\/Cabinetwork - Benchtops\/Ensuite\/item$$\n\n$total = 0\nFOREACH %%Quantities\/BillRecord%% IN %%Quantities%% ,\n    IF %%Quantities\/BillRecord\/ItemCode%% == \"700.IFC.BWK.Set.Partition.GF\"\n    THEN $total = $total + %%Quantities\/BillRecord\/Quantity%%\n    ENDIF \nNEXT\n\nSWITCH($benchtop_colour,\n  CASE \"20mm Cotton White\", EXPORT(\"106.01673\", 1, 102, 1, 1, $benchtop_colour)\n  CASE \"20mm Iceland\", EXPORT(\"106.0156\", 1, 101, 1, 1, $benchtop_colour)\n  EXPORT(\"106.123\", $total, 103, 1, 1, $benchtop_colour)\n)",
         "flow_id": 16,
-        "active": 1
+        "active": 0
     },
     {
         "note": "new flow test",
@@ -38,6 +38,13 @@
         "username": "Diego Oliveira",
         "expression": "\/\/ Start variables -\n$total = 0\n\n\/\/ Loop through item 800.12345 quantities and sum\nFOREACH %%Quantities\/BillRecord%% IN %%Quantities%% ,\n    IF %%Quantities\/BillRecord\/ItemCode%% == \"800.12345\"\n    THEN \n        $total = $total + %%Quantities\/BillRecord\/Quantity%%\n    ENDIF \nNEXT\n\n\/\/ Calculate total cost\n$total_cost = $total * 21.5\n\n\/\/ Export item 027.12345 to cost centre 27 and load 2\nEXPORT(\"027.12345\", $total_cost, 27, 2, 1, \"Exported total cost\")",
         "flow_id": 39,
+        "active": 1
+    },
+    {
+        "note": "Sum and Multiply Flow",
+        "username": "Diego Oliveira",
+        "expression": "\/\/ Start variables -\n$total = 0\n\n\/\/ Loop through item 1234.4321 quantities and sum\nFOREACH %%Quantities\/BillRecord%% IN %%Quantities%% ,\n    IF %%Quantities\/BillRecord\/ItemCode%% == \"1234.4321\"\n    THEN \n        $total = $total + %%Quantities\/BillRecord\/Quantity%%\n    ENDIF \nNEXT\n\n\/\/ Calculate total cost\n$total_cost = $total * 25\n\n\/\/ Export item 54.12345 to cost centre 54 and load 1\nEXPORT(\"54.12345\", $total_cost, 54, 1, 1, \"Exported total cost\")",
+        "flow_id": 40,
         "active": 1
     },
     {
