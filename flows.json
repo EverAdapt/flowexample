@@ -85,7 +85,7 @@
     {
         "note": "Sum and Multiply Flow",
         "username": "Diego Oliveira",
-        "expression": "\/\/ Start variables -\n$total = 0\n\n\/\/ Loop through item 1234.4321 quantities and sum\nFOREACH %%Quantities\/BillRecord%% IN %%Quantities%% ,\n    IF %%Quantities\/BillRecord\/ItemCode%% == \"1234.4321\"\n    THEN \n        $total = $total + %%Quantities\/BillRecord\/Quantity%%\n    ENDIF \nNEXT\n\n\/\/ Calculate total cost\n$total_cost = $total * 25\n\n\/\/ Export item 54.12345 to cost centre 54 and load 1\nEXPORT(\"54.12345\", $total_cost, 54, 1, 1, \"Exported total cost\")",
+        "expression": "\/\/ Start variables -\n$total = 0\n\n\/\/ Loop through item 1234.4321 quantities and sum\nFOREACH %%Quantities\/BillRecord%% IN %%Quantities%% ,\n    IF %%Quantities\/BillRecord\/ItemCode%% == \"1234.4321\"\n    THEN \n        $total = $total + %%Quantities\/BillRecord\/Quantity%%\n    ENDIF \nNEXT\n\n\/\/ Calculate total cost\n$total_cost = $total * 23\n\n\/\/another comment\n\n\/\/ Export item 54.12345 to cost centre 54 and load 1\nEXPORT(\"54.12345\", $total_cost, 54, 1, 1, \"Exported total cost\")",
         "flow_id": 40,
         "active": 1
     },
