@@ -1,0 +1,10 @@
+{
+    "note": "EXAMPLE: Exports Int 2c blocks all-in-one flow",
+    "username": "Diego Oliveira",
+    "expression": "$total = 0\n\n\/\/LOOP TROUGH 1 ARCHICAD RECIPE WE KNOW EXPORTS 2C INT BLOCKS\nFOREACH %%Quantities\/BillRecord%% IN %%Quantities%% ,\n    IF %%Quantities\/BillRecord\/ItemCode%% == \"700.IFC.BWK.Set.Partition.GF\"\n    THEN $total = $total + %%Quantities\/BillRecord\/Quantity%%\n    ENDIF \nNEXT\n\/\/LOOP TROUGH ANOTHER ARCHICAD RECIPE WE KNOW EXPORTS 2C INT BLOCKS\nFOREACH %%Quantities\/BillRecord%% IN %%Quantities%% ,\n    IF %%Quantities\/BillRecord\/ItemCode%% == \"700.IFC.BWK.Set.GF\"\n        THEN $total = $total + %%Quantities\/BillRecord\/Quantity%%\n    ENDIF \nNEXT\n\n\/\/MULTIPLY BY 19.5 AND round by leaf size\n$rounded_qty_2c_int = ceiling($total * 19.5, @brick_2c_int_leaf)\n\/\/find out num of packs AND leafs for workup\n$num_packs = floor($rounded_qty_2c_int, @brick_2c_int_pack ) \/ @brick_2c_int_pack\n$num_leafs = remainder($rounded_qty_2c_int, @brick_2c_int_pack) \/ @brick_2c_int_leaf\n$workup = \"ORDERED \" & $num_packs & \" PACKS AND \" & $num_leafs & \" LEAFS\"\n\nEXPORT(\"028.00020\", $rounded_qty_2c_int, 28, 1, 1, $workup )",
+    "flow_id": 44,
+    "active": 1,
+    "tags": [
+        "Bricks"
+    ]
+}

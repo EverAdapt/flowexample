@@ -1,0 +1,8 @@
+{
+    "note": "TESTING Example: Loop trough selections",
+    "username": "Diego Oliveira",
+    "expression": "FOREACH %%choice%% IN %%Choices\/Cabinetwork\/Cabinetwork - Style & Size%% ,\n    IF %%choice\/item%% == \"Lifestyle 900mm\"\n    THEN\n        EXPORT(123,1,106)\n    ENDIF\nNEXT",
+    "flow_id": 38,
+    "active": 0,
+    "tags": []
+}

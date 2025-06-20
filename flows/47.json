@@ -1,0 +1,10 @@
+{
+    "note": "cc106 - Export DV Luxury 2m Cabinet and Benchtop",
+    "username": "Diego Oliveira",
+    "expression": "FOREACH $$choice$$ IN $$Choices\/Cabinetwork\/Cabinetwork - Style & Size$$ ,\n    IF $$choice\/item$$ == \"Luxury 2m\"\n    THEN\n        \/\/ Set variables\n        $cabpanels = $$Choices\/Cabinetwork\/Cabinetwork - Cabinetry & Fixed Panels\/item$$\n        $benchtop = $$Choices\/Cabinetwork\/Cabinetwork - Benchtops\/item$$\n\n        \/\/Choose AND export Cabinets\n        SWITCH($cabpanels,\n            CASE \"OAKWOOD\", \n                EXPORT(\"106.545\", 1, 106, 1, 1, \"\")\n            CASE \"PORTLAND ASH\", \n                EXPORT(\"106.547\", 1, 106, 1, 1, \"\")\n            CASE \"DIAMOND WHITE GLOSS\", \n                EXPORT(\"106.548\", 1, 106, 1, 1, \"\")\n            CASE \"TEAKWOOD\", \n                EXPORT(\"106.549\", 1, 106, 1, 1, \"\")\n        EXPORT(\"each\", 1, 106, 1, 1, \"Cabinet Colour not found\")\n        )\n\n        \/\/Choose AND export benchtops\n        SWITCH($benchtop,\n            CASE \"ICELAND\", \n                EXPORT(\"106.0156\", 1, 106, 2, 1, \"\")\n            CASE \"COTTON WHITE\", \n                EXPORT(\"106.0158\", 1, 106, 2, 1, \"\")\n            CASE \"CARRERA WHITE\", \n                EXPORT(\"106.0160\", 1, 106, 2, 1, \"\")\n            CASE \"STORM GREY\", \n                EXPORT(\"106.0163\", 1, 106, 2, 1, \"\")\n        EXPORT(\"each\", 1, 106, 1, 1, \"Benchtop Colour not found\")\n        )\n\n    \/\/Add installs\n    EXPORT(\"106.820\", 1, 106, 1, 1, \"\")\n    EXPORT(\"106.720\", 1, 106, 2, 1, \"\")\n    ENDIF \nNEXT ",
+    "flow_id": 47,
+    "active": 1,
+    "tags": [
+        "DVcabinet"
+    ]
+}
