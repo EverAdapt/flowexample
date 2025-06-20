@@ -1,9 +1,9 @@
 {
     "note": "testing",
     "username": "Diego Oliveira",
-    "expression": "$ AND % shortcuts\nquant %%Quantities\/BillRecord\/ItemCode%% \"700.IFC.FINISH.Set.EXO.GF\" 963\nchoice $$Choices\/Cabinetwork\/Cabinetwork - Style & Size\/Kitchen\/item$$ Lifestyle 4.6m\n\n\n\/\/comment\nicon\nquant %%Quantities\/BillRecord\/ItemCode%%\"700.IFC.FINISH.Set.EXO.GF\"\nchoice $$Choices\/Cabinetwork\/Cabinetwork - Benchtops\/Kitchen\/item$$963 Lifestyle 4.6m\n",
+    "expression": "$ AND % shortcuts\nquant %%Quantities\/BillRecord\/ItemCode%% \"700.IFC.FINISH.Set.EXO.GF\" 963\nchoice $$Choices\/Cabinetwork\/Cabinetwork - Style & Size\/Kitchen\/item$$ Lifestyle 4.6m\n\n\n\/\/comment added something\n\nquant %%Quantities\/BillRecord\/ItemCode%%\"700.IFC.FINISH.Set.EXO.GF\"\nchoice $$Choices\/Cabinetwork\/Cabinetwork - Benchtops\/Kitchen\/item$$963 Lifestyle 4.6m\n",
     "attachments": [
-        "uploads\/file_6854ffdbb993f.pdf"
+        "uploads\/file_6855009a4ebdf.pdf"
     ],
     "flow_id": 50,
     "active": 1,
