@@ -1,10 +1,7 @@
 {
     "note": "test new flow in",
     "username": "Diego Oliveira",
-    "expression": "\/\/some code\n\/\/more code",
-    "attachments": [
-        "uploads\/file_685505a4d50ab.pdf"
-    ],
+    "expression": "\/\/some code",
     "flow_id": 51,
     "active": 1,
     "tags": [
