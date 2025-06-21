@@ -1,7 +1,7 @@
 {
     "note": "test new flow in",
     "username": "Diego Oliveira",
-    "expression": "\/\/ some code\n\/\/ more code\n\/\/ test",
+    "expression": "\/\/some code\n\/\/more code\n\nIF 2+3 = 5 THEN \nEXPORT(four.test, 1, 1, 1, 1, )\nENDIF ",
     "flow_id": 51,
     "active": 1,
     "tags": [
