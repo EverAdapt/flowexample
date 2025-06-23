@@ -1,0 +1,10 @@
+{
+    "note": "Loop trough quantities and join texts dynamic ItemCode (door frames) (copy)",
+    "username": "Diego Oliveira",
+    "expression": "\/\/start variables\n$total = 0\n$workup = \"\"\n\n\/\/loop trough all single doorframes AND sum quantity, join description(workup)\nFOREACH %%Quantities\/BillRecord%% IN %%Quantities%% ,\n  IF %%Quantities\/BillRecord\/ItemCode%% == \"800.Da001\" \n    THEN \n    $wc = \"\"\n    $hand = \"\"\n    $total = $total + %%Quantities\/BillRecord\/Quantity%%\n    $workup = %%Quantities\/BillRecord\/XDescription%%\n      \/\/check IF WC framing\n      IF contains($workup, \"WC\") THEN $wc = \".WC\" ENDIF \n      \/\/define handing\n      IF contains($workup, \"RH\") THEN $hand = \".RH\" ENDIF \n      IF contains($workup, \"LH\") THEN $hand = \".LH\" ENDIF \n    EXPORT(\"054.200\" & $hand & $wc, 1, 105, 1, 1, \"note these example items dont exist\")\n  ENDIF \nNEXT\n\n\/\/also export labour fees\nEXPORT(\"105.23\", $total, 105, 1, 1, \"fixie\")\nEXPORT(\"151.255\", $total, 151, 1, 1, \"painter\")",
+    "flow_id": 37,
+    "active": 0,
+    "tags": [
+        "Example"
+    ]
+}

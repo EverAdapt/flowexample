@@ -1,0 +1,10 @@
+{
+    "note": "TESTING: MATH EXPRESSIONS",
+    "username": "Diego Oliveira",
+    "expression": "$total = 0\nFOREACH %%Quantities\/BillRecord%% IN %%Quantities%% ,\n    IF %%Quantities\/BillRecord\/ItemCode%% == \"700.IFC.BWK.Set.Partition.GF\"\n    THEN $total = $total + %%Quantities\/BillRecord\/Quantity%%\n    ENDIF \nNEXT\n$total_2c_int_bricks = ceiling($total, @brick_2c_int_leaf)\n\/\/multiply total of walls m2 by 19.5 AND save IN global variable\nEXPORT(\"028.00020\", $total_2c_int_bricks, 28, 1, 1, \"TEXT\" )",
+    "flow_id": 45,
+    "active": 0,
+    "tags": [
+        "Example"
+    ]
+}
