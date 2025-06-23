@@ -1,0 +1,8 @@
+{
+    "note": "Setting Global Variables example",
+    "username": "Diego Oliveira",
+    "expression": "\/\/ Main details\n@BAL = \"\"\n@test = 10\n@WindRate = \"\"\n@FootingDet = \"\"\n@Corrosion = \"\"\n@JobSuburb = \"\"$$Choices\/Note\/lotAddress$$\n\/\/ brick pack sizes\n@brick_1c_face_leaf = 88\n@brick_1c_face_pack = 264\n@brick_1c_int_leaf = 84\n@brick_1c_int_pack = 252\n@brick_2c_face_leaf = 46\n@brick_2c_face_pack = 138\n@brick_2c_int_leaf = 46\n@brick_2c_int_pack = 138\n@brick_waste = 1.02 \/\/ this = 2%\n@int_block_qty = 0",
+    "flow_id": 22,
+    "active": 1,
+    "tags": []
+}

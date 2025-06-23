@@ -1,0 +1,8 @@
+{
+    "note": "Examples Switch Case",
+    "username": "diego@furlli.com.au",
+    "expression": "\/\/set the benchtop variable to use later\n$benchtop_colour =$$Choices\/Cabinetwork\/Cabinetwork - Benchtops\/Ensuite\/item$$\n\n$total = 0\nFOREACH %%Quantities\/BillRecord%% IN %%Quantities%% ,\n    IF %%Quantities\/BillRecord\/ItemCode%% == \"700.IFC.BWK.Set.Partition.GF\"\n    THEN $total = $total + %%Quantities\/BillRecord\/Quantity%%\n    ENDIF \nNEXT\n\nSWITCH($benchtop_colour,\n  CASE \"20mm Cotton White\", EXPORT(\"106.01673\", 1, 102, 1, 1, $benchtop_colour)\n  CASE \"20mm Iceland\", EXPORT(\"106.0156\", 1, 101, 1, 1, $benchtop_colour)\n  EXPORT(\"106.123\", $total, 103, 1, 1, $benchtop_colour)\n)",
+    "flow_id": 16,
+    "active": 0,
+    "tags": []
+}

@@ -1,0 +1,10 @@
+{
+    "note": "EXAMPLE: Loop each 2c Internal Set Bricks wall and save @Int_block_qty",
+    "username": "Diego Oliveira",
+    "expression": "$total = 0\nFOREACH %%Quantities\/BillRecord%% IN %%Quantities%% ,\n    IF %%Quantities\/BillRecord\/ItemCode%% == \"700.IFC.BWK.Set.GF\"\n        THEN $total = $total + %%Quantities\/BillRecord\/Quantity%%\n    ENDIF \nNEXT\n\n\/\/multiply total of walls m2 by 19.5 AND save IN global variable\n@int_block_qty = @int_block_qty + ($total * 19.5)",
+    "flow_id": 42,
+    "active": 0,
+    "tags": [
+        "Example"
+    ]
+}

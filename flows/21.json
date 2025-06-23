@@ -1,0 +1,10 @@
+{
+    "note": "CC106 - Export DV Lifestyle 1.7m Cabinets to ENSUITE",
+    "username": "Diego Oliveira",
+    "expression": "\/\/set variables\n$benchtop2 = \"\"\n$cabpanels2 = \"\"\n\n\nFOREACH $$choice$$ IN $$Choices\/Cabinetwork\/Cabinetwork - Style & Size$$ ,\n    IF $$choice\/item$$ == \"Lifestyle 1.7m\"\n    THEN \n    $$Choices\/Cabinetwork\/Cabinetwork - Cabinetry & Fixed Panels\/Ensuite\/item$$\n        \/\/set variables rather THEN be querying a selections dynamic key every time\n        $cabpanels2 = $$Choices\/Cabinetwork\/Cabinetwork - Cabinetry & Fixed Panels\/Ensuite\/item$$\n        $benchtop2 = $$Choices\/Cabinetwork\/Cabinetwork - Benchtops\/Ensuite\/item$$\n\n        \/\/Choose AND export Cabinets\n        SWITCH($cabpanels2,\n            CASE \"Teakwood\", \n                EXPORT(\"106.525\", 1, 106, 1, 1, \"\")\n            CASE \"DV Portland Ash\", \n                EXPORT(\"106.535\", 1, 106, 1, 1, \"\")\n            CASE \"DV Diamond White Gloss\", \n                EXPORT(\"106.540\", 1, 106, 1, 1, \"\")\n        EXPORT(\"each\", 1, 106, 1, 1, \"DV Cabinet Colour not found\")\n        )\n\n        \/\/Choose AND export benchtops\n        SWITCH($benchtop2,\n        CASE \"20mm Iceland\", \n                EXPORT(\"106.0142\", 1, 106, 2, 1, \"\")\n            CASE \"20mm Cotton White\", \n                EXPORT(\"106.0144\", 1, 106, 2, 1, \"\")\n            CASE \"20mm Carrera White\", \n                EXPORT(\"106.0150\", 1, 106, 2, 1, \"\")\n            CASE \"20mm Storm Grey\", \n                EXPORT(\"106.0153\", 1, 106, 2, 1, \"\")\n        EXPORT(\"each\", 1, 106, 1, 1, \"DV Benchtop Colour not found\")\n        )\n\n    \/\/Add installs\n    EXPORT(\"106.820\", 1, 106, 1, 1, \"\")\n    EXPORT(\"106.720\", 1, 106, 2, 1, \"\")\n\n    ENDIF \nNEXT \n",
+    "flow_id": 21,
+    "active": 1,
+    "tags": [
+        "DVcabinet"
+    ]
+}
