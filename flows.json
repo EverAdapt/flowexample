@@ -1,0 +1,173 @@
+[
+    {
+        "note": "Setting Global Variables example",
+        "username": "Diego Oliveira",
+        "expression": "\/\/ Main details\n@BAL = \"\"\n@test = 10\n@WindRate = \"\"\n@FootingDet = \"\"\n@Corrosion = \"\"\n@JobSuburb = \"\"$$Choices\/Note\/lotAddress$$\n\/\/ brick pack sizes\n@brick_1c_face_leaf = 88\n@brick_1c_face_pack = 264\n@brick_1c_int_leaf = 84\n@brick_1c_int_pack = 252\n@brick_2c_face_leaf = 46\n@brick_2c_face_pack = 138\n@brick_2c_int_leaf = 46\n@brick_2c_int_pack = 138\n@brick_waste = 1.02 \/\/ this = 2%\n@int_block_qty = 0",
+        "flow_id": 22,
+        "active": 1,
+        "tags": []
+    },
+    {
+        "note": "cc106 - Export DV Lifestyle Kitchen Cabinets and Install",
+        "username": "Diego Oliveira",
+        "expression": "FOREACH $$choice$$ IN $$Choices\/Cabinetwork\/Cabinetwork - Style & Size$$ ,\n    IF $$choice\/item$$ == \"Lifestyle 3.5m\" OR $$choice\/item$$ == \"Lifestyle 4m\" OR $$choice\/item$$ == \"Lifestyle 4.6m\" \n    \/\/need to get the room here to use IN $var\n    \/\/so can use IN $$Choices\/Cabinetwork\/Cabinetwork - Style & Size\/$var\/item\n    THEN\n        \/\/ Set variables\n        $kitchensize = $$Choices\/Cabinetwork\/Cabinetwork - Style & Size\/Kitchen\/item$$\n        $cabpanels = $$Choices\/Cabinetwork\/Cabinetwork - Cabinetry & Fixed Panels\/Kitchen\/item$$\n\n        \/\/Choose AND export Cabinets\n        SWITCH($kitchensize,\n            \/\/3.5 kitchens\n            CASE \"Lifestyle 3.5m\" \n                SWITCH($cabpanels,\n                    CASE \"DV Diamond White Gloss\", \n                        EXPORT(\"106.130\", 1, 106, 1, 1, \"\")\n                    CASE \"Two Tone Portland Ash\/ Diamond White Gloss\", \n                        EXPORT(\"106.170\", 1, 106, 1, 1, \"\")\n                EXPORT(\"each\", 1, 106, 1, 1, \"Kitchen Cabinet Colour not found\")\n                )\n            \/\/4m kitchens\n            CASE \"Lifestyle 4m\" \n                SWITCH($cabpanels,\n                    CASE \"DV Diamond White Gloss\", \n                        EXPORT(\"106.120\", 1, 106, 1, 1, \"\")\n                    CASE \"Two Tone Portland Ash\/ Diamond White Gloss\", \n                        EXPORT(\"106.168\", 1, 106, 1, 1, \"\")\n                EXPORT(\"each\", 1, 106, 1, 1, \"Kitchen Cabinet Colour not found\")\n                )\n            \/\/4.6 kitchens\n            CASE \"Lifestyle 4.6m\" \n                SWITCH($cabpanels,\n                    CASE \"DV Diamond White Gloss\", \n                        EXPORT(\"106.110\", 1, 106, 1, 1, \"\")\n                    CASE \"Two Tone Portland Ash\/ Diamond White Gloss\", \n                        EXPORT(\"106.165\", 1, 106, 1, 1, \"\")\n                EXPORT(\"each\", 1, 106, 1, 1, \"Kitchen Cabinet Colour not found\")\n                )\n        )\n\n    \/\/Add INSTALL KITCHEN CUPBOARD (4.6,4.0 AND 3.5M)- INSC01\n    EXPORT(\"106.810\", 1, 106, 1, 1, \"\")\n    ENDIF \nNEXT ",
+        "flow_id": 48,
+        "active": 1,
+        "tags": [
+            "DVcabinet",
+            "KItchen"
+        ]
+    },
+    {
+        "note": "cc106 - Export DV Lifestyle Kitchen Benchtops and Install",
+        "username": "Diego Oliveira",
+        "expression": "FOREACH $$choice$$ IN $$Choices\/Cabinetwork\/Cabinetwork - Style & Size$$ ,\n  IF $$choice\/item$$ == \"Lifestyle 3.5m\" OR $$choice\/item$$ == \"Lifestyle 4m\" OR $$choice\/item$$ == \"Lifestyle 4.6m\"\n  THEN\n    \/\/set variables\n    $kitchensize = $$Choices\/Cabinetwork\/Cabinetwork - Style & Size\/Kitchen\/item$$\n    $bench_colour = $$Choices\/Cabinetwork\/Cabinetwork - Benchtops\/Kitchen\/item$$\n    $sink_type =$$Choices\/Plumbing\/Plumbing - Kitchen Sink\/Kitchen\/item$$\n\n    \/\/REAR benchtops\n    IF $kitchensize == \"Lifestyle 4.6m\" THEN\n      \/\/rear benchtops for 4.6m lifestyle only\n      SWITCH($bench_colour,\n        CASE \"20mm Carrera White\", EXPORT(\"106.0037\", 1, 106, 2, 1, \"\")\n        CASE \"20mm Cotton White\",  EXPORT(\"106.0039\", 1, 106, 2, 1, \"\")\n        CASE \"20mm Concrete Grey\", EXPORT(\"106.0041\", 1, 106, 2, 1, \"\")\n        CASE \"20mm Midnight Sky\",  EXPORT(\"106.0043\", 1, 106, 2, 1, \"\")\n        CASE \"20mm Storm Grey\",    EXPORT(\"106.00441\", 1, 106, 2, 1, \"\")\n        EXPORT(\"each\", 1, 106, 2, 1, \"Kitchen Cabinet Colour not found\")\n      )\n    ELSE\n      \/\/rear benchtops for 3.6 AND 4m lifestyle\n      SWITCH($bench_colour,\n        CASE \"20mm Carrera White\", EXPORT(\"106.0045\", 1, 106, 2, 1, \"\")\n        CASE \"20mm Cotton White\",  EXPORT(\"106.0047\", 1, 106, 2, 1, \"\")\n        CASE \"20mm Concrete Grey\", EXPORT(\"106.0049\", 1, 106, 2, 1, \"\")\n        CASE \"20mm Midnight Sky\",  EXPORT(\"106.0051\", 1, 106, 2, 1, \"\")\n        CASE \"20mm Storm Grey\",    EXPORT(\"106.00534\", 1, 106, 2, 1, \"\")\n        EXPORT(\"each\", 1, 106, 2, 1, \"Kitchen Cabinet Colour not found\")\n      )\n    ENDIF\n\n    \/\/ISLAND BENCHTOPS\n    IF $sink_type == contains($sink_type, \"Premio\") THEN\n      \/\/Premio above mount island benchtop only\n      SWITCH($bench_colour,\n        CASE \"20mm Carrera White\", EXPORT(\"106.0017\", 1, 106, 2, 1, \"\")\n        CASE \"20mm Cotton White\",  EXPORT(\"106.0019\", 1, 106, 2, 1, \"\")\n        CASE \"20mm Concrete Grey\", EXPORT(\"106.0021\", 1, 106, 2, 1, \"\")\n        CASE \"20mm Midnight Sky\",  EXPORT(\"106.0023\", 1, 106, 2, 1, \"\")\n        CASE \"20mm Storm Grey\",    EXPORT(\"106.00235\", 1, 106, 2, 1, \"\")\n        EXPORT(\"each\", 1, 106, 2, 1, \"Kitchen Cabinet Colour not found\")\n      )\n      \/\/Include a sink AND install sink\n      EXPORT(120.613, 1, 106, 2, 1, \"\")\n      EXPORT(106.745, 1, 106, 2, 1, \"\")\n    ELSE\n      \/\/Ultimo undermount mount island benchtop only\n      SWITCH($bench_colour,\n        CASE \"20mm Carrera White\", EXPORT(\"106.0025\", 1, 106, 2, 1, \"\")\n        CASE \"20mm Cotton White\",  EXPORT(\"106.0027\", 1, 106, 2, 1, \"\")\n        CASE \"20mm Concrete Grey\", EXPORT(\"106.0029\", 1, 106, 2, 1, \"\")\n        CASE \"20mm Midnight Sky\",  EXPORT(\"106.0031\", 1, 106, 2, 1, \"\")\n        CASE \"20mm Storm Grey\",    EXPORT(\"106.00331\", 1, 106, 2, 1, \"\")\n        EXPORT(\"each\", 1, 106, 2, 1, \"Kitchen Cabinet Colour not found\")\n      )\n      \/\/Include a sink AND install sink\n      EXPORT(120.616, 1, 106, 2, 1, \"\")\n      EXPORT(106.740, 1, 106, 2, 1, \"\")\n    ENDIF\n\n    \/\/export DV kitchen benchtop install \n    EXPORT(\"106.710\", 1, 106, 2, 1, \"\")\n  ENDIF\nNEXT",
+        "flow_id": 49,
+        "active": 1,
+        "tags": [
+            "Bench",
+            "DVcabinet",
+            "KItchen"
+        ]
+    },
+    {
+        "note": "testing",
+        "username": "Diego Oliveira",
+        "expression": "$ AND % shortcuts\nquant %%Quantities\/BillRecord\/ItemCode%% \"700.IFC.FINISH.Set.EXO.GF\" 963\nchoice $$Choices\/Cabinetwork\/Cabinetwork - Style & Size\/Kitchen\/item$$ Lifestyle 4.6m\n\nctrol o SWITCH \nquant %%Quantities\/BillRecord\/ItemCode%%\"700.IFC.FINISH.Set.EXO.GF\" 963\nchoice $$Choices\/Cabinetwork\/Cabinetwork - Style & Size\/Kitchen\/item$$20mm Concrete Grey\n\nicon\nquant %%Quantities\/BillRecord\/ItemCode%%\"700.IFC.FINISH.Set.EXO.GF\"\nchoice $$Choices\/Cabinetwork\/Cabinetwork - Benchtops\/Kitchen\/item$$963 Lifestyle 4.6m\n",
+        "flow_id": 50,
+        "active": 1,
+        "tags": []
+    },
+    {
+        "note": "EXAMPLES: mathematical expressions",
+        "username": "Diego Oliveira",
+        "expression": "\/\/ round(number,digits)\n$var = round(3.14159, 2) \/\/result 3.14\n\n\/\/rounddown(number,digits)\n$var = rounddown(3.14159, 1) \/\/result 3.1\n\n\/\/roundup(number,digits)\n$var = roundup(3.14159, 1) \/\/result 3.2\n\n\/\/floor(number,multiple)\n$var = floor(13,5) \/\/result 10\n\n\/\/ceiling(number,multiple)\n$var = ceiling(13,5) \/\/result 15\n\n\/\/remainder(number,divisor)\n$var = remainder(19,6) \/\/result 1\n\n\/\/using variables IN mathematical expressions\n$brick_pack = 138\nceiling(3129,$brick_pack) \/\/result IN 3180\n\n\n",
+        "flow_id": 39,
+        "active": 0,
+        "tags": []
+    },
+    {
+        "note": "Examples Switch Case",
+        "username": "diego@furlli.com.au",
+        "expression": "\/\/set the benchtop variable to use later\n$benchtop_colour =$$Choices\/Cabinetwork\/Cabinetwork - Benchtops\/Ensuite\/item$$\n\n$total = 0\nFOREACH %%Quantities\/BillRecord%% IN %%Quantities%% ,\n    IF %%Quantities\/BillRecord\/ItemCode%% == \"700.IFC.BWK.Set.Partition.GF\"\n    THEN $total = $total + %%Quantities\/BillRecord\/Quantity%%\n    ENDIF \nNEXT\n\nSWITCH($benchtop_colour,\n  CASE \"20mm Cotton White\", EXPORT(\"106.01673\", 1, 102, 1, 1, $benchtop_colour)\n  CASE \"20mm Iceland\", EXPORT(\"106.0156\", 1, 101, 1, 1, $benchtop_colour)\n  EXPORT(\"106.123\", $total, 103, 1, 1, $benchtop_colour)\n)",
+        "flow_id": 16,
+        "active": 0,
+        "tags": []
+    },
+    {
+        "note": "CC106 - Export DV Lifestyle 900mm Cabinets & Benchtops",
+        "username": "Diego Oliveira",
+        "expression": "\/\/set variables\n$benchtop = \"\"\n$cabpanels = \"\"\n\nFOREACH $$choice$$ IN $$Choices\/Cabinetwork\/Cabinetwork - Style & Size$$ ,\n    IF $$choice\/item$$ == \"Lifestyle 900mm\"\n    THEN \n        \/\/set variables rather THEN be querying a selections dynamic key every time\n        $cabpanels = $$Choices\/Cabinetwork\/Cabinetwork - Cabinetry & Fixed Panels\/Bathroom\/item$$\n        $benchtop = $$Choices\/Cabinetwork\/Cabinetwork - Benchtops\/Bathroom\/item$$\n\n        \/\/Choose AND export Lifestyle Cabinets\n        SWITCH($cabpanels,\n            CASE \"Teakwood\", \n                EXPORT(\"106.425\", 1, 106, 1, 1, \"\")\n            CASE \"DV Portland Ash\", \n                EXPORT(\"106.435\", 1, 106, 1, 1, \"\")\n            CASE \"DV Diamond White Gloss\", \n                EXPORT(\"106.440\", 1, 106, 1, 1, \"\")\n        EXPORT(\"each\", 1, 106, 1, 1, \"DV Cabinet Colour not found\")\n        )\n\n        \/\/Choose AND export benchtops\n        SWITCH($benchtop,\n            CASE \"20mm Iceland\", \n                EXPORT(\"106.0102\", 1, 106, 2, 1, \"\")\n            CASE \"20mm Cotton White\", \n                EXPORT(\"106.0104\", 1, 106, 2, 1, \"\")\n            CASE \"20mm Carrera White\", \n                EXPORT(\"106.0110\", 1, 106, 2, 1, \"\")\n            CASE \"20mm Storm Grey\", \n                EXPORT(\"106.0112\", 1, 106, 2, 1, \"\")\n        EXPORT(\"each\", 1, 106, 1, 1, \"DV Benchtop Colour not found\")\n        )\n\n    \/\/Add installs\n    EXPORT(\"106.815\", 1, 106, 1, 1, \"\")\n    EXPORT(\"106.715\", 1, 106, 2, 1, \"\")\n\n    ENDIF \nNEXT ",
+        "flow_id": 41,
+        "active": 1,
+        "tags": [
+            "DVcabinet"
+        ]
+    },
+    {
+        "note": "CC106 - Export DV Luxury 900mm Cabinets & Benchtops",
+        "username": "Diego Oliveira",
+        "expression": "FOREACH $$choice$$ IN $$Choices\/Cabinetwork\/Cabinetwork - Style & Size$$ ,\n    IF $$choice\/item$$ == \"Luxury 900mm\" \/\/NEED TO FIND WHAT ADDENDA SAYS\n    THEN\n        \/\/ Set variables\n        $cabpanels = $$Choices\/Cabinetwork\/Cabinetwork - Cabinetry & Fixed Panels\/Bathroom\/item$$\n        $benchtop = $$Choices\/Cabinetwork\/Cabinetwork - Benchtops\/Bathroom\/item$$\n\n        \/\/Choose AND export Luxury Cabinets\n        SWITCH($cabpanels,\n            CASE \"OAKWOOD\", \n                EXPORT(\"106.445\", 1, 106, 1, 1, \"\")\n            CASE \"PORTLAND ASH\", \n                EXPORT(\"106.447\", 1, 106, 1, 1, \"\")\n            CASE \"DIAMOND WHITE GLOSS\", \n                EXPORT(\"106.448\", 1, 106, 1, 1, \"\")\n            CASE \"TEAKWOOD\", \n                EXPORT(\"106.449\", 1, 106, 1, 1, \"\")\n        EXPORT(\"each\", 1, 106, 1, 1, \"DV Cabinet Colour not found\")\n        )\n\n        \/\/Choose AND export luxury single basin benchtops (ULTIMO CUTOUT)\n        SWITCH($benchtop,\n            CASE \"ICELAND\", \n                EXPORT(\"106.0116\", 1, 106, 2, 1, \"\")\n            CASE \"COTTON WHITE\", \n                EXPORT(\"106.0118\", 1, 106, 2, 1, \"\")\n            CASE \"CARRERA\", \n                EXPORT(\"106.0120\", 1, 106, 2, 1, \"\")\n            CASE \"STORM GREY\", \n                EXPORT(\"106.0123\", 1, 106, 2, 1, \"\")\n        EXPORT(\"each\", 1, 106, 1, 1, \"DV Benchtop Colour not found\")\n        )\n\n    \/\/Add installs\n    EXPORT(\"106.815\", 1, 106, 1, 1, \"\")\n    EXPORT(\"106.715\", 1, 106, 2, 1, \"\")\n\n    ENDIF \nNEXT ",
+        "flow_id": 46,
+        "active": 1,
+        "tags": [
+            "DVcabinet"
+        ]
+    },
+    {
+        "note": "CC106 - Export DV Lifestyle 1.7m Cabinets to ENSUITE",
+        "username": "Diego Oliveira",
+        "expression": "\/\/set variables\n$benchtop2 = \"\"\n$cabpanels2 = \"\"\n\n\nFOREACH $$choice$$ IN $$Choices\/Cabinetwork\/Cabinetwork - Style & Size$$ ,\n    IF $$choice\/item$$ == \"Lifestyle 1.7m\"\n    THEN \n    $$Choices\/Cabinetwork\/Cabinetwork - Cabinetry & Fixed Panels\/Ensuite\/item$$\n        \/\/set variables rather THEN be querying a selections dynamic key every time\n        $cabpanels2 = $$Choices\/Cabinetwork\/Cabinetwork - Cabinetry & Fixed Panels\/Ensuite\/item$$\n        $benchtop2 = $$Choices\/Cabinetwork\/Cabinetwork - Benchtops\/Ensuite\/item$$\n\n        \/\/Choose AND export Cabinets\n        SWITCH($cabpanels2,\n            CASE \"Teakwood\", \n                EXPORT(\"106.525\", 1, 106, 1, 1, \"\")\n            CASE \"DV Portland Ash\", \n                EXPORT(\"106.535\", 1, 106, 1, 1, \"\")\n            CASE \"DV Diamond White Gloss\", \n                EXPORT(\"106.540\", 1, 106, 1, 1, \"\")\n        EXPORT(\"each\", 1, 106, 1, 1, \"DV Cabinet Colour not found\")\n        )\n\n        \/\/Choose AND export benchtops\n        SWITCH($benchtop2,\n        CASE \"20mm Iceland\", \n                EXPORT(\"106.0142\", 1, 106, 2, 1, \"\")\n            CASE \"20mm Cotton White\", \n                EXPORT(\"106.0144\", 1, 106, 2, 1, \"\")\n            CASE \"20mm Carrera White\", \n                EXPORT(\"106.0150\", 1, 106, 2, 1, \"\")\n            CASE \"20mm Storm Grey\", \n                EXPORT(\"106.0153\", 1, 106, 2, 1, \"\")\n        EXPORT(\"each\", 1, 106, 1, 1, \"DV Benchtop Colour not found\")\n        )\n\n    \/\/Add installs\n    EXPORT(\"106.820\", 1, 106, 1, 1, \"\")\n    EXPORT(\"106.720\", 1, 106, 2, 1, \"\")\n\n    ENDIF \nNEXT \n",
+        "flow_id": 21,
+        "active": 1,
+        "tags": [
+            "DVcabinet"
+        ]
+    },
+    {
+        "note": "cc106 - Export DV Luxury 2m Cabinet and Benchtop",
+        "username": "Diego Oliveira",
+        "expression": "FOREACH $$choice$$ IN $$Choices\/Cabinetwork\/Cabinetwork - Style & Size$$ ,\n    IF $$choice\/item$$ == \"Luxury 2m\"\n    THEN\n        \/\/ Set variables\n        $cabpanels = $$Choices\/Cabinetwork\/Cabinetwork - Cabinetry & Fixed Panels\/item$$\n        $benchtop = $$Choices\/Cabinetwork\/Cabinetwork - Benchtops\/item$$\n\n        \/\/Choose AND export Cabinets\n        SWITCH($cabpanels,\n            CASE \"OAKWOOD\", \n                EXPORT(\"106.545\", 1, 106, 1, 1, \"\")\n            CASE \"PORTLAND ASH\", \n                EXPORT(\"106.547\", 1, 106, 1, 1, \"\")\n            CASE \"DIAMOND WHITE GLOSS\", \n                EXPORT(\"106.548\", 1, 106, 1, 1, \"\")\n            CASE \"TEAKWOOD\", \n                EXPORT(\"106.549\", 1, 106, 1, 1, \"\")\n        EXPORT(\"each\", 1, 106, 1, 1, \"Cabinet Colour not found\")\n        )\n\n        \/\/Choose AND export benchtops\n        SWITCH($benchtop,\n            CASE \"ICELAND\", \n                EXPORT(\"106.0156\", 1, 106, 2, 1, \"\")\n            CASE \"COTTON WHITE\", \n                EXPORT(\"106.0158\", 1, 106, 2, 1, \"\")\n            CASE \"CARRERA WHITE\", \n                EXPORT(\"106.0160\", 1, 106, 2, 1, \"\")\n            CASE \"STORM GREY\", \n                EXPORT(\"106.0163\", 1, 106, 2, 1, \"\")\n        EXPORT(\"each\", 1, 106, 1, 1, \"Benchtop Colour not found\")\n        )\n\n    \/\/Add installs\n    EXPORT(\"106.820\", 1, 106, 1, 1, \"\")\n    EXPORT(\"106.720\", 1, 106, 2, 1, \"\")\n    ENDIF \nNEXT ",
+        "flow_id": 47,
+        "active": 1,
+        "tags": [
+            "DVcabinet"
+        ]
+    },
+    {
+        "note": "EXAMPLE: Exports Int 2c blocks all-in-one flow",
+        "username": "Diego Oliveira",
+        "expression": "$total = 0\n\n\/\/LOOP TROUGH 1 ARCHICAD RECIPE WE KNOW EXPORTS 2C INT BLOCKS\nFOREACH %%Quantities\/BillRecord%% IN %%Quantities%% ,\n    IF %%Quantities\/BillRecord\/ItemCode%% == \"700.IFC.BWK.Set.Partition.GF\"\n    THEN $total = $total + %%Quantities\/BillRecord\/Quantity%%\n    ENDIF \nNEXT\n\/\/LOOP TROUGH ANOTHER ARCHICAD RECIPE WE KNOW EXPORTS 2C INT BLOCKS\nFOREACH %%Quantities\/BillRecord%% IN %%Quantities%% ,\n    IF %%Quantities\/BillRecord\/ItemCode%% == \"700.IFC.BWK.Set.GF\"\n        THEN $total = $total + %%Quantities\/BillRecord\/Quantity%%\n    ENDIF \nNEXT\n\n\/\/MULTIPLY BY 19.5 AND round by leaf size\n$rounded_qty_2c_int = ceiling($total * 19.5, @brick_2c_int_leaf)\n\/\/find out num of packs AND leafs for workup\n$num_packs = floor($rounded_qty_2c_int, @brick_2c_int_pack ) \/ @brick_2c_int_pack\n$num_leafs = remainder($rounded_qty_2c_int, @brick_2c_int_pack) \/ @brick_2c_int_leaf\n$workup = \"ORDERED \" & $num_packs & \" PACKS AND \" & $num_leafs & \" LEAFS\"\n\nEXPORT(\"028.00020\", $rounded_qty_2c_int, 28, 1, 1, $workup )",
+        "flow_id": 44,
+        "active": 1,
+        "tags": [
+            "Bricks"
+        ]
+    },
+    {
+        "note": "WORKING - Loop trough quantities and join texts (door frames)",
+        "expression": "\/\/start variables\n$total = 0\n$workup = \"\"\n\n\n\/\/loop trough all single doorframes AND sum quantity, join description(workup)\nFOREACH %%Quantities\/BillRecord%% IN %%Quantities%% ,\n    IF %%Quantities\/BillRecord\/ItemCode%% == \"800.Da001\" \n    THEN \n        $total = $total + %%Quantities\/BillRecord\/Quantity%%\n        $workup = $workup & char(10) & %%Quantities\/BillRecord\/XDescription%%\n    ENDIF \nNEXT\n\n\/\/now check selections for frame type\n$frame_type = $$Choices\/Joinery\/Joinery - Internal\/House\/item$$\nSWITCH($frame_type,\n  CASE \"Deluxe Metal Door Frame\", EXPORT(\"054.200D\", $total, 54, 1, 1, $workup)\n  CASE \"Regal Metal Door Frame\", EXPORT(\"054.200R\", $total, 54, 1, 1, $workup)\n)\n\n\/\/also export labour fees\nEXPORT(\"105.23\", $total, 105, 1, 1, \"fixie\")\nEXPORT(\"151.255\", $total, 151, 1, 1, \"painter\")",
+        "flow_id": 27,
+        "active": 1,
+        "username": "",
+        "tags": [
+            "Doors"
+        ]
+    },
+    {
+        "note": "TESTING: MATH EXPRESSIONS",
+        "username": "Diego Oliveira",
+        "expression": "$total = 0\nFOREACH %%Quantities\/BillRecord%% IN %%Quantities%% ,\n    IF %%Quantities\/BillRecord\/ItemCode%% == \"700.IFC.BWK.Set.Partition.GF\"\n    THEN $total = $total + %%Quantities\/BillRecord\/Quantity%%\n    ENDIF \nNEXT\n$total_2c_int_bricks = ceiling($total, @brick_2c_int_leaf)\n\/\/multiply total of walls m2 by 19.5 AND save IN global variable\nEXPORT(\"028.00020\", $total_2c_int_bricks, 28, 1, 1, \"TEXT\" )",
+        "flow_id": 45,
+        "active": 1,
+        "tags": []
+    },
+    {
+        "note": "EXAMPLE: Loop each brick internal partition wall and save @Int_block_qty",
+        "username": "Diego Oliveira",
+        "expression": "$total = 0\nFOREACH %%Quantities\/BillRecord%% IN %%Quantities%% ,\n    IF %%Quantities\/BillRecord\/ItemCode%% == \"700.IFC.BWK.Set.Partition.GF\"\n    THEN $total = $total + %%Quantities\/BillRecord\/Quantity%%\n    ENDIF \nNEXT\n\n\/\/multiply total of walls m2 by 19.5 AND save IN global variable\n@int_block_qty = @int_block_qty + ($total * 19.5)",
+        "flow_id": 26,
+        "active": 1,
+        "tags": []
+    },
+    {
+        "note": "EXAMPLE: Loop each 2c Internal Set Bricks wall and save @Int_block_qty",
+        "username": "Diego Oliveira",
+        "expression": "$total = 0\nFOREACH %%Quantities\/BillRecord%% IN %%Quantities%% ,\n    IF %%Quantities\/BillRecord\/ItemCode%% == \"700.IFC.BWK.Set.GF\"\n        THEN $total = $total + %%Quantities\/BillRecord\/Quantity%%\n    ENDIF \nNEXT\n\n\/\/multiply total of walls m2 by 19.5 AND save IN global variable\n@int_block_qty = @int_block_qty + ($total * 19.5)",
+        "flow_id": 42,
+        "active": 1,
+        "tags": []
+    },
+    {
+        "note": "EXAMPLE: Exports @Int_block_qty",
+        "username": "Diego Oliveira",
+        "expression": "\/\/round @globalVariable by leaf size\n$rounded_qty_2c_int = ceiling(@int_block_qty, @brick_2c_int_leaf)\n\/\/find out num of packs AND leafs for workup\n$num_packs = floor($rounded_qty_2c_int, @brick_2c_int_pack ) \/ @brick_2c_int_pack\n$num_leafs = remainder($rounded_qty_2c_int, @brick_2c_int_pack) \/ @brick_2c_int_leaf\n\nEXPORT(\"028.00020\", $rounded_qty_2c_int, 28, 1, 1, \"Ordered \" & $num_packs & \" PACKS AND \" & $num_leafs & \" LEAFS\" )",
+        "flow_id": 43,
+        "active": 1,
+        "tags": []
+    },
+    {
+        "note": "Loop trough quantities and join texts dynamic ItemCode (door frames) (copy)",
+        "username": "Diego Oliveira",
+        "expression": "\/\/start variables\n$total = 0\n$workup = \"\"\n\n\/\/loop trough all single doorframes AND sum quantity, join description(workup)\nFOREACH %%Quantities\/BillRecord%% IN %%Quantities%% ,\n  IF %%Quantities\/BillRecord\/ItemCode%% == \"800.Da001\" \n    THEN \n    $wc = \"\"\n    $hand = \"\"\n    $total = $total + %%Quantities\/BillRecord\/Quantity%%\n    $workup = %%Quantities\/BillRecord\/XDescription%%\n      \/\/check IF WC framing\n      IF contains($workup, \"WC\") THEN $wc = \".WC\" ENDIF \n      \/\/define handing\n      IF contains($workup, \"RH\") THEN $hand = \".RH\" ENDIF \n      IF contains($workup, \"LH\") THEN $hand = \".LH\" ENDIF \n    EXPORT(\"054.200\" & $hand & $wc, 1, 105, 1, 1, \"note these example items dont exist\")\n  ENDIF \nNEXT\n\n\/\/also export labour fees\nEXPORT(\"105.23\", $total, 105, 1, 1, \"fixie\")\nEXPORT(\"151.255\", $total, 151, 1, 1, \"painter\")",
+        "flow_id": 37,
+        "active": 1,
+        "tags": []
+    },
+    {
+        "note": "Loop trough quantities and join texts dynamic ItemCode (door frames)",
+        "username": "diego@furlli.com.au",
+        "expression": "\/\/start variables\n$total = 0\n$workup = \"\"\n\n\/\/now check selections for frame type\n$frame_type = $$Choices\/Joinery\/Joinery - Internal\/House\/item$$\nSWITCH($frame_type,\n  CASE \"Deluxe Metal Door Frame\", $frame = \".D\")\n  CASE \"Regal Metal Door Frame\", $frame = \".R\")\n)\n\n\/\/loop trough all single doorframes AND sum quantity, join description(workup)\nFOREACH %%Quantities\/BillRecord%% IN %%Quantities%% ,\n  IF %%Quantities\/BillRecord\/ItemCode%% == \"800.Da001\" \n    THEN \n    $wc = \"\"\n    $hand = \"\"\n    $total = $total + %%Quantities\/BillRecord\/Quantity%%\n    $workup = %%Quantities\/BillRecord\/XDescription%%\n      \/\/chack IF WA framing\n      IF contains($workup, \"WC\") THEN $wc = \".WC\" ENDIF \n      \/\/define handing\n      IF contains($workup, \"RH\") THEN $hand = \".RH\" ENDIF \n      IF contains($workup, \"LH\") THEN $hand = \".LH\" ENDIF \n    EXPORT(\"054.200\" & $frame & $hand & $wc, 1, 105, 1, 1, \"note these example items dont exist\")\n  ENDIF \nNEXT\n\n\/\/also export labour fees\nEXPORT(\"105.23\", $total, 105, 1, 1, \"fixie\")\nEXPORT(\"151.255\", $total, 151, 1, 1, \"painter\")",
+        "flow_id": 28,
+        "active": 0,
+        "tags": []
+    },
+    {
+        "note": "TESTING Example: Loop trough selections",
+        "username": "Diego Oliveira",
+        "expression": "FOREACH %%choice%% IN %%Choices\/Cabinetwork\/Cabinetwork - Style & Size%% ,\n    IF %%choice\/item%% == \"Lifestyle 900mm\"\n    THEN\n        EXPORT(123,1,106)\n    ENDIF\nNEXT",
+        "flow_id": 38,
+        "active": 0,
+        "tags": []
+    }
+]
