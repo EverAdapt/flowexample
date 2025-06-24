@@ -1,7 +1,7 @@
 {
-    "note": "Another IF example",
+    "note": "Example simple IF Flow",
     "username": "Diego Oliveira",
-    "expression": "IF 3+6 == 9 THEN \nEXPORT(\"123.123456\", 1, 1, 1, 1, )\nENDIF ",
+    "expression": "IF 3+3 == 6 THEN \nEXPORT(\"123.test\", 1, 1, 1, 1, )\nENDIF ",
     "flow_id": 51,
     "active": 1,
     "tags": [

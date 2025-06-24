@@ -1,5 +1,5 @@
 {
-    "note": "EXAMPLES: mathematical expressions and their results",
+    "note": "EXAMPLES: mathematical expressions",
     "username": "Diego Oliveira",
     "expression": "\/\/ round(number,digits)\n$var = round(3.14159, 2) \/\/result 3.14\n\n\/\/rounddown(number,digits)\n$var = rounddown(3.14159, 1) \/\/result 3.1\n\n\/\/roundup(number,digits)\n$var = roundup(3.14159, 1) \/\/result 3.2\n\n\/\/floor(number,multiple)\n$var = floor(13,5) \/\/result 10\n\n\/\/ceiling(number,multiple)\n$var = ceiling(13,5) \/\/result 15\n\n\/\/remainder(number,divisor)\n$var = remainder(19,6) \/\/result 1\n\n\/\/using variables IN mathematical expressions\n$brick_pack = 138\nceiling(3129,$brick_pack) \/\/result IN 3180\n\n\n",
     "flow_id": 39,

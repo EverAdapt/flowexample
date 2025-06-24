@@ -1,0 +1,10 @@
+{
+    "note": "Export Total Quantity of 700.IFC.BWK.Face.Dble.GF",
+    "username": "Diego Oliveira",
+    "expression": "\/\/ Initialize total variable\n$total = 0\n\n\/\/ Loop through all quantities and sum those that match the item code\nFOREACH %%Quantities\/BillRecord%% IN %%Quantities%% ,\n    IF %%Quantities\/BillRecord\/ItemCode%% == \"700.IFC.BWK.Face.Dble.GF\"\n    THEN $total = $total + %%Quantities\/BillRecord\/Quantity%%\n    ENDIF \nNEXT\n\n\/\/ Multiply the total by 19.5\n$total = $total * 19.5\n\n\/\/ Export the calculated total to the specified item\nEXPORT(\"027.1234\", $total, 27, 1, 1, \"Exported total quantity\")",
+    "flow_id": 52,
+    "active": 1,
+    "tags": [
+        "Example"
+    ]
+}
